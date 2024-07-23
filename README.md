@@ -22,4 +22,4 @@ Uma vez com acesso ao app, você poderá enviar mensagens para o Google Gemini, 
 ![image](https://github.com/user-attachments/assets/69f7abcc-94f1-4bae-8e4c-7ad51871f112)
 
 
-Caso tenha interesse de rodar o código, será necessário gerar um app do firebase e atribuir sua API, juntamente com a do Google Gemini no main.dart.
+Caso tenha interesse de rodar o código localmente, ou em um emulador, será necessário gerar um app do firebase e atribuir sua API, juntamente com a do Google Gemini no main.dart e rodar o comando "flutter pub get" na raíz do projeto.
