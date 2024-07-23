@@ -14,7 +14,7 @@ class FirebaseAuthService {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         showToast(message: 'Esse email já foi cadastrado.', color: Colors.red);
-      } else {
+      } else if (e.code != 'channel-error') {
         showToast(message: 'Ocorreu um erro: ${e.code}', color: Colors.red);
       }
     }
