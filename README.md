@@ -20,3 +20,5 @@ Uma vez com acesso ao app, você poderá enviar mensagens para o Google Gemini, 
 ![image](https://github.com/user-attachments/assets/b235b39f-d257-4491-8b01-674bcb69cec5)
 ![image](https://github.com/user-attachments/assets/e0375407-806f-4d82-8a8b-2c86d6510c7a)
 ![image](https://github.com/user-attachments/assets/e18d8531-9408-493c-9d59-4a629108c2d0)
+
+Caso tenha interesse de rodar o código, será necessário gerar um app do firebase e atribuir sua API, juntamente com a do Google Gemini no main.dart.
