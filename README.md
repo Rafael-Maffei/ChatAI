@@ -1,7 +1,6 @@
 # Chat_ai
 
-A new Flutter project.
-## Bem vindo ao Chat\_AI!
+# Bem vindo ao Chat\_AI!
 
 Para usar o aplicativo, é necessário baixar o apk que pode ser encontrado em "Releases".
 
