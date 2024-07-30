@@ -118,6 +118,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   googleLogin() async {
+    setState(() {
+      isLoading = true;
+    });
+
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
@@ -140,5 +144,8 @@ class _LoginPageState extends State<LoginPage> {
     } catch (e) {
       showToast(message: 'Ocorreu um erro $e', color: Colors.red);
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 }
