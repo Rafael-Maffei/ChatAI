@@ -1,9 +1,10 @@
+import 'package:chat_ai/widgets/registrer_or_login.button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_ai/common/toast.dart';
 import 'package:chat_ai/common/validators.dart';
-import 'package:chat_ai/firebase_auth_implementation/firebase_auth_services.dart';
-import 'package:chat_ai/widgets/alreadyRegistered.button.dart';
+import 'package:chat_ai/controllers/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:chat_ai/widgets/redirect.button.dart';
 import 'package:chat_ai/widgets/formContainer.widget.dart';
 
 class RegistryPage extends StatefulWidget {
@@ -70,36 +71,15 @@ class _RegistryPageState extends State<RegistryPage> {
                     isPasswordField: true,
                   ),
                   const SizedBox(height: 12),
-                  const AlreadyRegisteredButton(),
+                  const RedirectButton(isLogin: false),
                 ],
               ),
               const SizedBox(height: 110),
-              GestureDetector(
-                onTap: () {
-                  registerUser();
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: isLoading
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : const Text(
-                            "Criar conta",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                  ),
-                ),
-              ),
+              isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : RegistrerOrLoginButton(isLogin: false, onTap: registerUser)
             ],
           ),
         ),
@@ -108,6 +88,10 @@ class _RegistryPageState extends State<RegistryPage> {
   }
 
   void registerUser() async {
+    setState(() {
+      isLoading = true;
+    });
+
     String email = emailInput.text;
     String password = passwordInput.text;
 
@@ -118,5 +102,9 @@ class _RegistryPageState extends State<RegistryPage> {
         Navigator.pushNamed(context, "/home");
       }
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 }

@@ -1,7 +1,7 @@
 import 'package:chat_ai/common/toast.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_ai/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:chat_ai/controllers/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:chat_ai/views/android/login.page.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 

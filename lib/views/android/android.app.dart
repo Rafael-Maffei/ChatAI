@@ -15,9 +15,9 @@ class AndroidApp extends StatelessWidget {
           child: LoginPage(),
         ),
         routes: {
-          '/home': (context) => HomePage(),
-          '/login': (context) => LoginPage(),
-          '/registry': (context) => RegistryPage(),
+          '/home': (context) => const HomePage(),
+          '/login': (context) => const LoginPage(),
+          '/registry': (context) => const RegistryPage(),
         });
   }
 }

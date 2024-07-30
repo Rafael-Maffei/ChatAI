@@ -8,7 +8,12 @@ class FormContainerWidget extends StatefulWidget {
   final TextInputType? inputType;
 
   const FormContainerWidget(
-      {this.controller, this.isPasswordField, required this.icon, this.hintText, this.inputType});
+      {super.key,
+      this.controller,
+      this.isPasswordField,
+      required this.icon,
+      this.hintText,
+      this.inputType});
 
   @override
   State<FormContainerWidget> createState() => _FormContainerWidget();
@@ -30,8 +35,7 @@ class _FormContainerWidget extends State<FormContainerWidget> {
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 16),
         filled: true,
         fillColor: Colors.grey[900],
-        prefixIcon: Icon(widget.icon,
-            color: Colors.grey),
+        prefixIcon: Icon(widget.icon, color: Colors.grey),
         suffixIcon: GestureDetector(
           onTap: () {
             setState(() {
