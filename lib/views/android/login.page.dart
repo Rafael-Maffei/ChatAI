@@ -1,8 +1,8 @@
+import 'package:chat_ai/widgets/google_login.button.dart';
 import 'package:chat_ai/widgets/redirect.button.dart';
 import 'package:chat_ai/widgets/registrer_or_login.button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:chat_ai/common/toast.dart';
 import 'package:chat_ai/common/validators.dart';
@@ -88,40 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 10,
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              googleLogin();
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[900],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      FontAwesomeIcons.google,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      "Entrar com Google",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          GoogleLoginButton(onTap: googleLogin)
                         ],
                       ),
               ]),

@@ -49,7 +49,7 @@ class _FormContainerWidget extends State<FormContainerWidget> {
                       ? const Color.fromARGB(255, 174, 123, 196)
                       : Colors.grey,
                 )
-              : const Text(""),
+              : const Text(''),
         ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         focusedBorder: OutlineInputBorder(
