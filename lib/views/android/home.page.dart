@@ -42,8 +42,7 @@ class _HomePageState extends State<HomePage> {
                   )),
                 ),
                 surfaceTintColor: Colors.transparent,
-                centerTitle: true,
-                title: const Text('Bem vindo!',
+                title: const Text('Chat AI',
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

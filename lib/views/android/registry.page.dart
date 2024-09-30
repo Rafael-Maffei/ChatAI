@@ -33,23 +33,18 @@ class _RegistryPageState extends State<RegistryPage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[850],
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 150),
-                child: const Text(
-                  'Cadastro',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold),
-                ),
+              const Text(
+                'Cadastro',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold),
               ),
               Column(
                 children: [
@@ -74,12 +69,11 @@ class _RegistryPageState extends State<RegistryPage> {
                   const RedirectButton(isLogin: false),
                 ],
               ),
-              const SizedBox(height: 110),
               isLoading
                   ? const CircularProgressIndicator(
                       color: Colors.white,
                     )
-                  : RegistrerOrLoginButton(isLogin: false, onTap: registerUser)
+                  : RegistrerOrLoginButton(isLogin: false, isGoogle: false, onTap: registerUser)
             ],
           ),
         ),

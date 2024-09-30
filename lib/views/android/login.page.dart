@@ -1,4 +1,3 @@
-import 'package:chat_ai/widgets/google_login.button.dart';
 import 'package:chat_ai/widgets/redirect.button.dart';
 import 'package:chat_ai/widgets/registrer_or_login.button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,23 +35,19 @@ class _LoginPageState extends State<LoginPage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey[850],
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 150),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold),
-                  ),
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold),
                 ),
                 Column(
                   children: [
@@ -77,18 +72,17 @@ class _LoginPageState extends State<LoginPage> {
                     const RedirectButton(isLogin: true),
                   ],
                 ),
-                const SizedBox(height: 110),
                 isLoading
                     ? const CircularProgressIndicator(
                         color: Colors.white,
                       )
                     : Column(
                         children: [
-                          RegistrerOrLoginButton(isLogin: true, onTap: login),
+                          RegistrerOrLoginButton(isLogin: true, isGoogle: false, onTap: login),
                           const SizedBox(
                             height: 10,
                           ),
-                          GoogleLoginButton(onTap: googleLogin)
+                          RegistrerOrLoginButton(isLogin: false, isGoogle: true, onTap: googleLogin)
                         ],
                       ),
               ]),
