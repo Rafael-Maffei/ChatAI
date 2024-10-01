@@ -1,6 +1,7 @@
 import 'package:chat_ai/views/android/login.page.dart';
 import 'package:chat_ai/views/android/registry.page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RedirectButton extends StatelessWidget {
   final bool isLogin;
@@ -20,21 +21,15 @@ class RedirectButton extends StatelessWidget {
           width: 5,
         ),
         GestureDetector(
-          onTap: () => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    isLogin ? const RegistryPage() : const LoginPage()),
-            (route) => false,
-          ),
+          onTap: () => Get.to(isLogin ? const RegistryPage() : const LoginPage()),
           child: Text(
             isLogin ? 'Cadastre-se' : 'Entre',
             style: const TextStyle(
-                color: Color.fromARGB(255, 174, 123, 196),
+                color: Color.fromRGBO(61, 114, 180, 1.0),
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
                 decoration: TextDecoration.underline,
-                decorationColor: Color.fromARGB(255, 174, 123, 196)),
+                decorationColor: Color.fromRGBO(61, 114, 180, 1.0)),
           ),
         ),
       ],

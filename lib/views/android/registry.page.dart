@@ -1,33 +1,14 @@
+import 'package:chat_ai/controllers/login_controller.dart';
 import 'package:chat_ai/widgets/registrer_or_login.button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_ai/common/toast.dart';
-import 'package:chat_ai/common/validators.dart';
-import 'package:chat_ai/controllers/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:chat_ai/widgets/redirect.button.dart';
-import 'package:chat_ai/widgets/formContainer.widget.dart';
+import 'package:chat_ai/widgets/formfield.widget.dart';
+import 'package:get/get.dart';
 
-class RegistryPage extends StatefulWidget {
+LoginController controller = Get.put(LoginController());
+
+class RegistryPage extends StatelessWidget {
   const RegistryPage({super.key});
-
-  @override
-  State<RegistryPage> createState() => _RegistryPageState();
-}
-
-class _RegistryPageState extends State<RegistryPage> {
-  bool isLoading = false;
-  final FirebaseAuthService auth = FirebaseAuthService();
-  TextEditingController emailInput = TextEditingController();
-  TextEditingController passwordInput = TextEditingController();
-  Validators validators = Validators();
-
-  @override
-  void dispose() {
-    emailInput.dispose();
-    passwordInput.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -50,7 +31,7 @@ class _RegistryPageState extends State<RegistryPage> {
                 children: [
                   FormContainerWidget(
                     icon: Icons.email_outlined,
-                    controller: emailInput,
+                    controller: controller.registerEmailInput,
                     hintText: 'Email',
                     inputType: TextInputType.emailAddress,
                     isPasswordField: false,
@@ -60,7 +41,7 @@ class _RegistryPageState extends State<RegistryPage> {
                   ),
                   FormContainerWidget(
                     icon: Icons.lock_outline,
-                    controller: passwordInput,
+                    controller: controller.registerPasswordInput,
                     hintText: 'Senha',
                     inputType: TextInputType.text,
                     isPasswordField: true,
@@ -69,36 +50,20 @@ class _RegistryPageState extends State<RegistryPage> {
                   const RedirectButton(isLogin: false),
                 ],
               ),
-              isLoading
-                  ? const CircularProgressIndicator(
-                      color: Colors.white,
-                    )
-                  : RegistrerOrLoginButton(isLogin: false, isGoogle: false, onTap: registerUser)
+              Obx(
+                () => controller.isLoading.value
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : RegistrerOrLoginButton(
+                        isLogin: false,
+                        isGoogle: false,
+                        onTap: controller.registerUser),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void registerUser() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    String email = emailInput.text;
-    String password = passwordInput.text;
-
-    if (validators.areCredentialsValid(email, password)) {
-      User? user = await auth.signUpWithEmailAndPassword(email, password);
-      if (user != null) {
-        showToast(message: 'Usuário criado com sucesso', color: Colors.green);
-        Navigator.pushNamed(context, "/home");
-      }
-    }
-
-    setState(() {
-      isLoading = false;
-    });
   }
 }

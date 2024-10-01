@@ -3,7 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RegistrerOrLoginButton extends StatelessWidget {
   RegistrerOrLoginButton(
-      {super.key, required this.isLogin, required this.isGoogle, required this.onTap});
+      {super.key,
+      required this.isLogin,
+      required this.isGoogle,
+      required this.onTap});
 
   final bool isLogin;
   bool isGoogle = false;

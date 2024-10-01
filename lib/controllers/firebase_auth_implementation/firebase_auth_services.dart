@@ -28,7 +28,10 @@ class FirebaseAuthService {
           email: email, password: password);
       return credential.user;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password' || e.code == 'channel-error' || e.code == 'invalid-credential') {
+      if (e.code == 'user-not-found' ||
+          e.code == 'wrong-password' ||
+          e.code == 'channel-error' ||
+          e.code == 'invalid-credential') {
         showToast(message: 'Email  e/ou senha incorretos.', color: Colors.red);
       } else {
         showToast(message: 'Ocorreu um erro: ${e.code}', color: Colors.red);

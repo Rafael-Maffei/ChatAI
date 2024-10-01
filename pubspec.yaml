@@ -19,6 +19,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   flutter_gemini: ^2.0.4
   dash_chat_2: ^0.0.21
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
@@ -29,10 +30,6 @@ flutter:
   uses-material-design: true
   assets:
     - "assets/icon.png"
-  fonts:
-    - family: Roboto
-      fonts:
-      - asset: fonts/Roboto-Bold.ttf
 
 flutter_launcher_icons:
   android: "launcher_icon"

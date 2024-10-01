@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       canPop: false,
       child: MaterialApp(
           theme:
-              ThemeData(primaryColor: const Color.fromARGB(255, 174, 123, 196)),
+              ThemeData(primaryColor: const Color.fromRGBO(61, 114, 180, 1.0)),
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             backgroundColor: Colors.grey[850],
@@ -36,12 +36,11 @@ class _HomePageState extends State<HomePage> {
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
                     colors: [
-                      Color.fromARGB(255, 174, 123, 196),
-                      Colors.lightBlue
+                      Color.fromRGBO(61, 114, 180, 1.0),
+                      Color.fromRGBO(82, 82, 82, 1.0),
                     ],
                   )),
                 ),
-                surfaceTintColor: Colors.transparent,
                 title: const Text('Chat AI',
                     style: TextStyle(
                         color: Colors.white,
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           inputTextStyle: const TextStyle(
               color: Colors.white, decorationColor: Colors.transparent),
           cursorStyle:
-              const CursorStyle(color: Color.fromARGB(255, 174, 123, 196)),
+              const CursorStyle(color: Color.fromRGBO(61, 114, 180, 1.0)),
           alwaysShowSend: false,
           sendOnEnter: true,
           inputDecoration: InputDecoration(
@@ -90,14 +89,14 @@ class _HomePageState extends State<HomePage> {
                   OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 174, 123, 196)),
+                      color: Color.fromRGBO(61, 114, 180, 1.0)),
                   borderRadius: BorderRadius.circular(10)))),
       currentUser: currentUser,
       onSend: sendMessage,
       messages: messages,
       messageOptions: const MessageOptions(
-        currentUserContainerColor: Colors.lightBlue,
-        containerColor: Color.fromARGB(255, 174, 123, 196),
+        currentUserContainerColor: Color.fromRGBO(82, 82, 82, 1.0),
+        containerColor: Color.fromRGBO(61, 114, 180, 1.0),
         textColor: Colors.white,
         borderRadius: 10,
       ),

@@ -1,35 +1,15 @@
+import 'package:chat_ai/controllers/login_controller.dart';
 import 'package:chat_ai/widgets/redirect.button.dart';
 import 'package:chat_ai/widgets/registrer_or_login.button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:chat_ai/common/toast.dart';
-import 'package:chat_ai/common/validators.dart';
-import 'package:chat_ai/controllers/firebase_auth_implementation/firebase_auth_services.dart';
-import 'package:chat_ai/widgets/formContainer.widget.dart';
+import 'package:get/get.dart';
 
-class LoginPage extends StatefulWidget {
+import 'package:chat_ai/widgets/formfield.widget.dart';
+
+LoginController controller = Get.put(LoginController());
+
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  bool isLoading = false;
-  final FirebaseAuthService auth = FirebaseAuthService();
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  TextEditingController emailInput = TextEditingController();
-  TextEditingController passwordInput = TextEditingController();
-  Validators validators = Validators();
-
-  @override
-  void dispose() {
-    emailInput.dispose();
-    passwordInput.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -53,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     FormContainerWidget(
                       icon: Icons.email_outlined,
-                      controller: emailInput,
+                      controller: controller.loginEmailInput,
                       hintText: 'Email',
                       inputType: TextInputType.emailAddress,
                       isPasswordField: false,
@@ -63,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     FormContainerWidget(
                       icon: Icons.lock_outline,
-                      controller: passwordInput,
+                      controller: controller.loginPasswordInput,
                       hintText: 'Senha',
                       inputType: TextInputType.text,
                       isPasswordField: true,
@@ -72,74 +52,28 @@ class _LoginPageState extends State<LoginPage> {
                     const RedirectButton(isLogin: true),
                   ],
                 ),
-                isLoading
+                controller.isLoading.value
                     ? const CircularProgressIndicator(
                         color: Colors.white,
                       )
                     : Column(
                         children: [
-                          RegistrerOrLoginButton(isLogin: true, isGoogle: false, onTap: login),
+                          RegistrerOrLoginButton(
+                              isLogin: true,
+                              isGoogle: false,
+                              onTap: controller.login),
                           const SizedBox(
                             height: 10,
                           ),
-                          RegistrerOrLoginButton(isLogin: false, isGoogle: true, onTap: googleLogin)
+                          RegistrerOrLoginButton(
+                              isLogin: false,
+                              isGoogle: true,
+                              onTap: controller.googleLogin)
                         ],
                       ),
               ]),
         ),
       ),
     );
-  }
-
-  void login() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    String email = emailInput.text;
-    String password = passwordInput.text;
-
-    User? user = await auth.signInWithEmailAndPassword(email, password);
-
-    if (user != null) {
-      showToast(message: 'Usuário conectado', color: Colors.green);
-      Navigator.pushNamed(context, "/home");
-    }
-
-    setState(() {
-      isLoading = false;
-    });
-  }
-
-  googleLogin() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
-
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-        );
-
-        await firebaseAuth.signInWithCredential(credential);
-        showToast(message: 'Conectado com Google', color: Colors.green);
-        Navigator.pushNamed(context, "/home");
-      }
-    } catch (e) {
-      showToast(message: 'Ocorreu um erro $e', color: Colors.red);
-    }
-    setState(() {
-      isLoading = false;
-    });
   }
 }

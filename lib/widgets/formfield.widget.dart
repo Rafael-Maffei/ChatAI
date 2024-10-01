@@ -29,7 +29,7 @@ class _FormContainerWidget extends State<FormContainerWidget> {
       keyboardType: widget.inputType,
       obscureText: widget.isPasswordField == true ? _obscureText : false,
       style: const TextStyle(color: Colors.white, fontSize: 16),
-      cursorColor: const Color.fromARGB(255, 174, 123, 196),
+      cursorColor: const Color.fromRGBO(61, 114, 180, 1.0),
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 16),
@@ -37,16 +37,14 @@ class _FormContainerWidget extends State<FormContainerWidget> {
         fillColor: Colors.grey[900],
         prefixIcon: Icon(widget.icon, color: Colors.grey),
         suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
+          onTap: () => setState(() {
               _obscureText = !_obscureText;
-            });
-          },
+            }),
           child: widget.isPasswordField == true
               ? Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
                   color: _obscureText == false
-                      ? const Color.fromARGB(255, 174, 123, 196)
+                      ? const Color.fromRGBO(61, 114, 180, 1.0)
                       : Colors.grey,
                 )
               : const Text(''),
@@ -54,7 +52,7 @@ class _FormContainerWidget extends State<FormContainerWidget> {
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         focusedBorder: OutlineInputBorder(
             borderSide:
-                const BorderSide(color: Color.fromARGB(255, 174, 123, 196)),
+                const BorderSide(color: Color.fromRGBO(61, 114, 180, 1.0)),
             borderRadius: BorderRadius.circular(10)),
       ),
     );
